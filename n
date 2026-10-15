@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+NOTES_DIR="${NOTES_DIR:-$HOME/Documents/notes}"
+mkdir -p "$NOTES_DIR"
+
+if command -v zenity >/dev/null 2>&1 && [ -n "$DISPLAY$WAYLAND_DISPLAY" ]; then
+    TEXT=$(zenity --entry --title="n" --text="" --width=500 2>/dev/null)
+else
+    printf "note: "
+    read -r TEXT
+fi
+
+if [ -n "$TEXT" ]; then
+    TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+    echo "$TEXT" > "$NOTES_DIR/$TIMESTAMP.txt"
+fi
