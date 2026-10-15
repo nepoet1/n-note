@@ -8,32 +8,40 @@ Running `n` opens a lightweight input dialog. Typing text and pressing Enter sav
 
 ## Installation
 
-### NixOS / Nix (Flakes)
+### NixOS / Nix
 
 Run directly without installation:
 
-```bash
-nix run github:nepoet1/n-note
+```sh
+nix --extra-experimental-features "nix-command flakes" run github:nepoet1/n-note
 ```
 
 Install into user profile:
 
-```bash
-nix profile install github:nepoet1/n-note
+```sh
+nix --extra-experimental-features "nix-command flakes" profile add github:nepoet1/n-note
 ```
 
 ### Arch Linux
 
 Install with a single command:
 
-```bash
+```sh
 git clone https://github.com/nepoet1/n-note.git /tmp/n-note && cd /tmp/n-note && makepkg -si --noconfirm && cd - && rm -rf /tmp/n-note
 ```
 
 ## Configuration
 
-By default, notes are saved to `~/Documents/notes`. To change the directory, export the `NOTES_DIR` environment variable in your shell configuration:
+By default, notes are saved to `~/Documents/notes`. To change the directory, set the `NOTES_DIR` environment variable.
 
-```bash
+Bash / Zsh:
+
+```sh
 export NOTES_DIR="$HOME/notes"
+```
+
+Fish:
+
+```fish
+set -Ux NOTES_DIR "$HOME/notes"
 ```
